@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "esbuild": "0.18.0",
+    "libphonenumber-js": "^1.10.34",
+    "yargs": "^17.7.2"
+  },
+  "name": "contiguity-cli",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild cli.ts --bundle --platform=node --outfile=cli.js",
+    "dev": "npm run build && ./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerbear2008/contiguity-cli.git"
+  },
+  "author": "jerbear4328",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jerbear2008/contiguity-cli/issues"
+  },
+  "homepage": "https://github.com/jerbear2008/contiguity-cli#readme",
+  "devDependencies": {
+    "@types/node": "^20.2.6"
+  },
+}
