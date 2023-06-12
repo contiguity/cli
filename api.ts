@@ -1,4 +1,4 @@
-import parsePhoneNumber from 'libphonenumber-js'
+import parsePhoneNumber from 'https://esm.sh/libphonenumber-js'
 const formatNumber = (input: string) => parsePhoneNumber(input)?.number
 
 // TODO: Clarify the type of the API response
