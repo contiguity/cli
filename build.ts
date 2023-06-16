@@ -1,4 +1,4 @@
-import { build, emptyDir } from 'https://deno.land/x/dnt/mod.ts'
+import { build, emptyDir } from "https://deno.land/x/dnt@0.37.0/mod.ts"
 
 await emptyDir('./npm')
 
@@ -12,11 +12,12 @@ await build({
   }],
   outDir: './npm',
   shims: {
-    // see JS docs for overview and more options
     deno: true,
+    undici: true,
+    prompts: true,
   },
+  scriptModule: false,
   package: {
-    // 'libphonenumber-js': '^1.10.34'
     name: 'contiguity-cli',
     description: '',
     version: '1.0.0',
@@ -32,10 +33,11 @@ await build({
     homepage: 'https://github.com/jerbear2008/contiguity-cli#readme',
   },
   mappings: {
-    'https://deno.land/x/yargs/deno.ts': {
-      name: 'yargs',
-      version: '^17.7.2',
-    },
+    // TODO: get this mapping to work (reduces code size by a lot)
+    //'https://deno.land/x/yargs@17.7.2-deno/deno.ts': {
+    //  name: 'yargs',
+    //  version: '^17.7.2',
+    //},
   },
   postBuild() {
     // steps to run after building and before running the tests

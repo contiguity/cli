@@ -1,21 +1,37 @@
-import parsePhoneNumber from 'https://esm.sh/libphonenumber-js'
-const formatNumber = (input: string) => parsePhoneNumber(input)?.number
+import parsePhoneNumber from "https://esm.sh/libphonenumber-js"
+export const parseNumber = (input: string) => {
+  const parsed = parsePhoneNumber(input, 'US')
+  if (!(parsed && parsed.isPossible())) throw new Error(`Invalid phone number: ${input}`)
+  if (!parsed.isValid()) console.warn(`Phone number may not be valid: ${input} (If it is, you may need to update)`)
+  return parsed
+}
 
 // TODO: Clarify the type of the API response
 type sendResponse = {
   code: number
   message: string
-  crumbs: {
-    plan: 'free' | 'payg' | 'unlimited' 
-    quota: number
-    type: 'sms'
-    ad: boolean
-  }
+  crumbs: crumbs
+}
+export type crumbs = {
+  plan: string
+  quota: number
+  type: string
+  ad: boolean
 }
 
-export async function sendSMS(number: string, message: string, key: string) {
-  const recipient = formatNumber(number)
+export async function sendSMS(number: string, message: string, key: string, mock: boolean = key === 'mock') {
+  const recipient = parseNumber(number)
   if (!recipient) throw new Error('Invalid phone number')
+
+  if (mock) {
+    console.log(`Mocking sending "${message}" to ${recipient.country} ${recipient.formatNational()}.`)
+    return {
+      plan: 'payg',
+      quota: 1234,
+      type: 'sms',
+      ad: false,
+    }
+  }
 
   const response = await fetch('https://contiguity.co/api/send/sms', {
     method: 'POST',
@@ -24,7 +40,7 @@ export async function sendSMS(number: string, message: string, key: string) {
       'X-API-Key': key,
     },
     body: JSON.stringify({
-      recipient,
+      recipient: recipient.number,
       message,
     }),
   })
