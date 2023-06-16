@@ -2,7 +2,7 @@ import parsePhoneNumber from "https://esm.sh/libphonenumber-js"
 export const parseNumber = (input: string) => {
   const parsed = parsePhoneNumber(input, 'US')
   if (!(parsed && parsed.isPossible())) throw new Error(`Invalid phone number: ${input}`)
-  if (!parsed.isValid()) console.warn(`Phone number may not be valid: ${input} (If it is, you may need to update)`)
+  if (!parsed.isValid()) console.warn(`Phone number may not be valid: ${parsed.country} ${parsed.formatNational()} (If it is, you may need to update)`)
   return parsed
 }
 
