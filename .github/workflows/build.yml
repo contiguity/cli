@@ -1,0 +1,25 @@
+name: Build CLI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up deno
+        uses: denolib/setup-deno@v2
+        
+      - name: Check types
+        run: deno check cli.ts
+      - name: Run tests
+        run: deno test
+        
+      - name: npm build
+        run: deno run -A ./build.ts
