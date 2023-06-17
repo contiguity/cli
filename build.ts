@@ -17,23 +17,24 @@ await build({
     prompts: true,
   },
   scriptModule: false,
+  importMap: 'deno.json',
   package: {
     name: 'contiguity-cli',
     description: '',
     version: '1.0.0',
     repository: {
       'type': 'git',
-      'url': 'git+https://github.com/jerbear2008/contiguity-cli.git'
+      'url': 'git+https://github.com/use-contiguity/cli.git'
     },
     author: 'jerbear4328',
     license: 'MIT',
     bugs: {
-      url: 'https://github.com/jerbear2008/contiguity-cli/issues'
+      url: 'https://github.com/use-contiguity/cli/issues'
     },
-    homepage: 'https://github.com/jerbear2008/contiguity-cli#readme',
+    homepage: 'https://github.com/use-contiguity/cli#readme',
   },
   mappings: {
-    // TODO: get this mapping to work (reduces code size by a lot)
+    // TODO: get this mapping to work (reduces code size)
     //'https://deno.land/x/yargs@17.7.2-deno/deno.ts': {
     //  name: 'yargs',
     //  version: '^17.7.2',
