@@ -1,5 +1,13 @@
 {
   "tasks": {
-    "build": "deno run --allow-env --allow-read --allow-write=npm --allow-run=npm build.ts"
+    "build": "deno run --allow-env --allow-read --allow-write=npm --allow-run=npm scripts/build.ts",
+    "cli": "deno run --allow-read --allow-write --allow-net --allow-env src/cli.ts"
+  },
+  "imports": {
+    "dnt": "https://deno.land/x/dnt@0.37.0/mod.ts",
+    "libphonenumber-js": "https://esm.sh/libphonenumber-js",
+    "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
+    "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts"
+
   }
 }

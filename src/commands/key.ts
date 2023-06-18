@@ -1,4 +1,4 @@
-import type yargsTypes from "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts"
+import type yargsTypes from "yargsTypes"
 import { getKey, storeKey, clearStoredKey } from '../config.ts'
 
 export const setKeyCommand = {

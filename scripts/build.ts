@@ -1,14 +1,13 @@
-import { build, emptyDir } from "https://deno.land/x/dnt@0.37.0/mod.ts"
+import { build, emptyDir } from "dnt"
 
 await emptyDir('./npm')
 
 await build({
   entryPoints: [
-    './mod.ts',
     {
       kind: 'bin',
       name: 'contiguity',
-      path: './cli.ts',
+      path: './src/cli.ts',
   }],
   outDir: './npm',
   shims: {

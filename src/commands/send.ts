@@ -1,4 +1,4 @@
-import type yargsTypes from "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts"
+import type yargsTypes from "yargsTypes"
 import { sendSMS, type crumbs } from './api.ts'
 import { ensureKey } from '../config.ts'
 

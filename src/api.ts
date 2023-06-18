@@ -1,4 +1,4 @@
-import parsePhoneNumber from "https://esm.sh/libphonenumber-js"
+import parsePhoneNumber from "libphonenumber-js"
 export const parseNumber = (input: string) => {
   const parsed = parsePhoneNumber(input, 'US')
   if (!(parsed && parsed.isPossible())) throw new Error(`Invalid phone number: ${input}`)

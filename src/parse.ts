@@ -1,4 +1,4 @@
-import yargs from "https://deno.land/x/yargs@v17.7.2-deno/deno.ts"
+import yargs from "yargs"
 import { sendCommand } from './commands/send.ts'
 import { setKeyCommand, clearKeyCommand } from './commands/key.ts'
 
