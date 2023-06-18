@@ -1,4 +1,4 @@
-import type yargsTypes from "yargsTypes"
+import type yargsTypes from 'yargsTypes'
 import { getKey, storeKey, clearStoredKey } from '../config.ts'
 
 export const setKeyCommand = {

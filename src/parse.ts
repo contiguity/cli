@@ -1,4 +1,4 @@
-import yargs from "yargs"
+import yargs from 'yargs'
 import { sendCommand } from './commands/send.ts'
 import { setKeyCommand, clearKeyCommand } from './commands/key.ts'
 

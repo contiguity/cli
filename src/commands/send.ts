@@ -1,8 +1,8 @@
-import type yargsTypes from "yargsTypes"
+import type yargsTypes from 'yargsTypes'
 import { sendSMS, type crumbs } from '../api.ts'
 import { ensureKey } from '../config.ts'
 
-const sendCommand = {
+export const sendCommand = {
   command: ['send <message>', '* <message>'],
   describe: 'Send a message',
   builder: (yargs: yargsTypes.Argv) => {
@@ -23,7 +23,7 @@ const sendCommand = {
         implies: 'number',
       })
   },
-  handler: (argv: yargsTypes.Arguments) => {
+  handler: async (argv: yargsTypes.Arguments) => {
     const [key, mock] = ensureKey(argv)
     let crumbs: crumbs | null = null
     if (argv.sms) {

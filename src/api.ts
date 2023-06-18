@@ -1,4 +1,4 @@
-import parsePhoneNumber from "libphonenumber-js"
+import parsePhoneNumber from 'libphonenumber-js'
 export const parseNumber = (input: string) => {
   const parsed = parsePhoneNumber(input, 'US')
   if (!(parsed && parsed.isPossible())) throw new Error(`Invalid phone number: ${input}`)
@@ -24,7 +24,7 @@ export async function sendSMS(number: string, message: string, key: string, mock
   if (!recipient) throw new Error('Invalid phone number')
 
   if (mock) {
-    console.log(`Mocking sending "${message}" to ${recipient.country} ${recipient.formatNational()}.`)
+    console.log(`Mocking sending '${message}' to ${recipient.country} ${recipient.formatNational()}.`)
     return {
       plan: 'payg',
       quota: 1234,

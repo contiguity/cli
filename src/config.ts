@@ -1,3 +1,5 @@
+import type yargsTypes from 'yargsTypes'
+
 export function storeKey(key: string) {
   // TODO: make this work via a config file
   localStorage.setItem('contiguity-cli-key', key)
@@ -17,7 +19,7 @@ export function getKey(givenKey?: string, noStored?: boolean) {
   return null
 }
 
-export function ensureKey(argv: yargsTypes.Arguments): Promise<[ key: string, mock: boolean ]> {
+export function ensureKey(argv: yargsTypes.Arguments): [ key: string, mock: boolean ] {
   const givenKey = 'key' in argv ? String(argv.key) : undefined
   const mock = 'mock' in argv ? !!argv.mock : false
 
