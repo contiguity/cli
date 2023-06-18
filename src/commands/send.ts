@@ -1,5 +1,5 @@
 import type yargsTypes from "yargsTypes"
-import { sendSMS, type crumbs } from './api.ts'
+import { sendSMS, type crumbs } from '../api.ts'
 import { ensureKey } from '../config.ts'
 
 const sendCommand = {
