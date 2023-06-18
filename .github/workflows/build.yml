@@ -18,7 +18,7 @@ jobs:
         uses: denoland/setup-deno@v1.1.2
         
       - name: Check types
-        run: deno check cli.ts
+        run: deno check src/cli.ts
       - name: Run tests
         run: deno test
         
