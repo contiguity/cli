@@ -1,4 +1,4 @@
-name: Build CLI
+name: Format and build CLI
 
 on:
   push:
@@ -8,19 +8,46 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  main:
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      contents: write
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up deno
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up Deno
         uses: denoland/setup-deno@v1.1.2
+      
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/deno.lock', '**/deno.json') }}
         
+      - name: Format 
+        run: deno fmt
+      - name: Lint
+        run: deno lint
       - name: Check types
-        run: deno check src/cli.ts
-      - name: Run tests
+        run: deno check
+      - name: Test
         run: deno test
         
-      - name: npm build
+      - name: Build and test NPM
         run: deno task build
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: built
+          path: npm/
+      
+      - name: Commit any changes
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+        with:
+          commit_message: Automatic formatting

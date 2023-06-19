@@ -8,6 +8,9 @@
     "libphonenumber-js": "https://esm.sh/libphonenumber-js",
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
     "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts"
-
+  },
+  "fmt": {
+    "semicolons": false,
+    "singleQuote": true
   }
 }
