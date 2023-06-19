@@ -22,4 +22,5 @@ export async function parse(args: string[]) {
     .parserConfiguration({
       'parse-numbers': false,
     })
+    .parse()
   }

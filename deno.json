@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build": "deno run --allow-env --allow-read --allow-write=npm --allow-run=npm scripts/build.ts",
+    "build": "deno run --allow-env --allow-read --allow-write=npm --allow-run=npm --allow-net scripts/build.ts",
     "cli": "deno run --allow-read --allow-write --allow-net --allow-env src/cli.ts"
   },
   "imports": {
