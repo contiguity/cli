@@ -8,7 +8,8 @@ await build({
       kind: 'bin',
       name: 'contiguity',
       path: './src/cli.ts',
-  }],
+    },
+  ],
   outDir: './npm',
   shims: {
     deno: true,
