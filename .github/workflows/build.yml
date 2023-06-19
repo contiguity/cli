@@ -35,7 +35,7 @@ jobs:
       - name: Lint
         run: deno lint
       - name: Check types
-        run: deno check
+        run: deno check src/cli.ts
       - name: Test
         run: deno test
         
