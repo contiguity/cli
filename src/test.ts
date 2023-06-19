@@ -1,6 +1,6 @@
-import parse from './parse.ts'
+import { parse } from './parse.ts'
 
-Deno.test('Mock SMS message', () => {
+Deno.test('Mock SMS message', async () => {
   const args = ['--mock', '-sn', '+12345678910', '"Hello world!"']
   console.log('testing CLI with args', args)
   const argv = await parse(args)
