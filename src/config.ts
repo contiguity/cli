@@ -1,7 +1,13 @@
 import type yargsTypes from 'yargsTypes'
 import { join } from 'path'
 
-const homeDir = Deno.build.os === 'windows' ? Deno.env.get('USERPROFILE') : Deno.env.get('HOME')
+const homeDir = 
+  Deno.build.os === 'windows'
+  ? (
+    Deno.env.get('USERPROFILE') || 'C:\\Program Files'
+  ) : (
+    Deno.env.get('HOME') || '~'
+  )
 export const configDir = join(homeDir, '.contiguity')
 
 const keyPath = join(configDir, 'key')
@@ -10,7 +16,7 @@ export function storeKey(key: string) {
   Deno.writeTextFileSync(keyPath, key)
 }
 export function clearStoredKey() {
-  Deno.removeFileSync(keyPath)
+  Deno.removeSync(keyPath)
 }
 
 export function getKey(givenKey?: string, noStored?: boolean) {
