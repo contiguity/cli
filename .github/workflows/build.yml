@@ -37,11 +37,11 @@ jobs:
       - name: Check types
         run: deno check src/cli.ts
       - name: Test
-        run: deno test
+        run: deno task test
         
       - name: Build and test NPM
         run: deno task build
-      - name: Upload a Build Artifact
+      - name: Upload built files
         uses: actions/upload-artifact@v3.1.2
         with:
           name: built
