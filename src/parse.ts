@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 import { sendCommand } from './commands/send.ts'
-import { setKeyCommand, clearKeyCommand } from './commands/key.ts'
+import { clearKeyCommand, setKeyCommand } from './commands/key.ts'
 
 export async function parse(args: string[]) {
   return await yargs(args)
@@ -23,4 +23,4 @@ export async function parse(args: string[]) {
       'parse-numbers': false,
     })
     .parse()
-  }
+}

@@ -1,5 +1,5 @@
 import type yargsTypes from 'yargsTypes'
-import { getKey, storeKey, clearStoredKey } from '../config.ts'
+import { clearStoredKey, getKey, storeKey } from '../config.ts'
 
 export const setKeyCommand = {
   command: 'set-key [key]',
@@ -8,7 +8,7 @@ export const setKeyCommand = {
     return yargs
       .positional('key', {
         type: 'string',
-        describe: 'Your Contiguity key'
+        describe: 'Your Contiguity key',
       })
   },
   handler: (argv: yargsTypes.Arguments) => {
@@ -17,7 +17,9 @@ export const setKeyCommand = {
       storeKey(key)
       console.log('The key has been set.')
     } else {
-      console.log('You must provide a key. To clear the saved key, use the clear-key command.')
+      console.log(
+        'You must provide a key. To clear the saved key, use the clear-key command.',
+      )
     }
   },
 }

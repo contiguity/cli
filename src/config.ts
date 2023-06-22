@@ -1,11 +1,11 @@
 import type yargsTypes from 'yargsTypes'
 import { join } from 'path'
 
-const homeDir = 
-  Deno.build.os === 'windows'
+const homeDir = Deno.build.os === 'windows'
   ? (
     Deno.env.get('USERPROFILE') || 'C:\\Program Files'
-  ) : (
+  )
+  : (
     Deno.env.get('HOME') || '~'
   )
 export const configDir = join(homeDir, '.contiguity')
@@ -30,12 +30,18 @@ export function getKey(givenKey?: string, noStored?: boolean) {
   return null
 }
 
-export function ensureKey(argv: yargsTypes.Arguments): [ key: string, mock: boolean ] {
+export function ensureKey(
+  argv: yargsTypes.Arguments,
+): [key: string, mock: boolean] {
   const givenKey = 'key' in argv ? String(argv.key) : undefined
   const mock = 'mock' in argv ? !!argv.mock : false
 
   const key = getKey(mock ? 'mock' : givenKey)
-  if (!key) throw new Error('A key is required because one is not saved and --mock was not used.')
-  
+  if (!key) {
+    throw new Error(
+      'A key is required because one is not saved and --mock was not used.',
+    )
+  }
+
   return [key, key === 'mock']
 }

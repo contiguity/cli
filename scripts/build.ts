@@ -1,4 +1,4 @@
-import { build, emptyDir } from "dnt"
+import { build, emptyDir } from 'dnt'
 
 await emptyDir('./npm')
 
@@ -24,12 +24,12 @@ await build({
     version: '1.0.0',
     repository: {
       'type': 'git',
-      'url': 'git+https://github.com/use-contiguity/cli.git'
+      'url': 'git+https://github.com/use-contiguity/cli.git',
     },
     author: 'jerbear4328',
     license: 'MIT',
     bugs: {
-      url: 'https://github.com/use-contiguity/cli/issues'
+      url: 'https://github.com/use-contiguity/cli/issues',
     },
     homepage: 'https://github.com/use-contiguity/cli#readme',
   },

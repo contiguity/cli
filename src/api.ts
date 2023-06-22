@@ -1,8 +1,14 @@
 import parsePhoneNumber from 'libphonenumber-js'
 export const parseNumber = (input: string) => {
   const parsed = parsePhoneNumber(input, 'US')
-  if (!(parsed && parsed.isPossible())) throw new Error(`Invalid phone number: ${input}`)
-  if (!parsed.isValid()) console.warn(`Phone number may not be valid: ${parsed.country} ${parsed.formatNational()} (If it is, you may need to update)`)
+  if (!(parsed && parsed.isPossible())) {
+    throw new Error(`Invalid phone number: ${input}`)
+  }
+  if (!parsed.isValid()) {
+    console.warn(
+      `Phone number may not be valid: ${parsed.country} ${parsed.formatNational()} (If it is, you may need to update)`,
+    )
+  }
   return parsed
 }
 
@@ -19,12 +25,19 @@ export type crumbs = {
   ad: boolean
 }
 
-export async function sendSMS(number: string, message: string, key: string, mock: boolean = key === 'mock') {
+export async function sendSMS(
+  number: string,
+  message: string,
+  key: string,
+  mock: boolean = key === 'mock',
+) {
   const recipient = parseNumber(number)
   if (!recipient) throw new Error('Invalid phone number')
 
   if (mock) {
-    console.log(`Mocking sending '${message}' to ${recipient.country} ${recipient.formatNational()}.`)
+    console.log(
+      `Mocking sending '${message}' to ${recipient.country} ${recipient.formatNational()}.`,
+    )
     return {
       plan: 'payg',
       quota: 1234,
