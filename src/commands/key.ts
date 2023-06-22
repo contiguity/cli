@@ -12,7 +12,7 @@ export const setKeyCommand = {
       })
   },
   handler: (argv: yargsTypes.Arguments) => {
-    const key = getKey(String(argv.key), true)
+    const key = getKey(argv.key ? String(argv.key) : undefined, true)
     if (key) {
       storeKey(key)
       console.log('The key has been set.')

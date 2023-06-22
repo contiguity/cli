@@ -12,8 +12,8 @@ export const configDir = join(homeDir, '.contiguity')
 
 const keyPath = join(configDir, 'key')
 export function storeKey(key: string) {
-  // TODO: make this work via a config file
-  Deno.writeTextFileSync(keyPath, key)
+  Deno.mkdirSync(configDir, { recursive: true })
+  Deno.writeTextFileSync(keyPath, key, { create: true })
 }
 export function clearStoredKey() {
   Deno.removeSync(keyPath)
