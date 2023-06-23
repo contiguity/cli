@@ -4,6 +4,7 @@ import { clearKeyCommand, setKeyCommand } from './commands/key.ts'
 
 export async function parse(args: string[]) {
   return await yargs(args)
+    .scriptName('contiguity')
     .option('key', {
       alias: 'k',
       describe: 'Your Contiguity key',

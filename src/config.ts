@@ -19,9 +19,11 @@ export function getKey(givenKey?: string, noStored?: boolean) {
   if (givenKey) return givenKey
   if (!noStored) {
     try {
-      // const storedKey = Deno.readTextFileSync(keyPath).trim()
-      // if (storedKey) return storedKey
-    } catch (e) {}
+      const storedKey = Deno.readTextFileSync(keyPath).trim()
+      if (storedKey) return storedKey
+    } catch {
+      // the key has not been set
+    }
   }
   const providedKey = prompt('Contiguity API key:')
   if (providedKey) return providedKey

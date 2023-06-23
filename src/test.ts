@@ -1,8 +1,16 @@
 import { parse } from './parse.ts'
 
-Deno.test('Mock SMS message', async () => {
-  const args = ['--mock', '-sn', '+12345678910', '"Hello world!"']
+async function testCLI(args: string[]) {
   console.log('testing CLI with args', args)
   const argv = await parse(args)
   console.log('argv', argv)
+  return argv
+}
+
+// Deno.test('Mock text message', async () => {
+//   await testCLI(['--mock', '-tn', '+12345678910', '"Hello world!"'])
+// })
+
+Deno.test('Check help message', async () => {
+  await testCLI(['-h'])
 })

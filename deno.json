@@ -1,22 +1,23 @@
 {
   "tasks": {
-    "build": "deno run --allow-env --allow-read --allow-write=npm --allow-run=npm --allow-net scripts/build.ts",
+    "build": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net scripts/build.ts",
     "cli": "deno run --allow-read --allow-write --allow-net --allow-env src/cli.ts",
-    "test": "deno test --allow-read --allow-write --allow-net --allow-env",
-    "esm:add": "deno run -A https://esm.sh/v126 add",
-    "esm:update": "deno run -A https://esm.sh/v126 update",
-    "esm:remove": "deno run -A https://esm.sh/v126 remove"
+    "test": "deno test --allow-read --allow-write --allow-net --allow-env"
   },
   "imports": {
-    "@contiguity/javascript": "https://esm.sh/@contiguity/javascript@2.0.0",
+    "@contiguity/javascript": "npm:@contiguity/javascript@2.0.0",
     "dnt": "https://deno.land/x/dnt@0.37.0/mod.ts",
-    "libphonenumber-js": "https://esm.sh/libphonenumber-js@1.10.36",
+    "libphonenumber-js": "npm:libphonenumber-js@1.10.36",
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
     "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts",
     "path": "https://deno.land/std@0.192.0/path/mod.ts"
   },
   "fmt": {
     "semiColons": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "exclude": ["npm/**/*"]
+  },
+  "lint": {
+    "exclude": ["npm/**/*"]
   }
 }
