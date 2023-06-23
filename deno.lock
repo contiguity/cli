@@ -154,13 +154,24 @@
     "https://deno.land/x/yargs_parser@v20.2.4-deno/build/lib/yargs-parser-types.d.ts": "434deb76c6632b3b6cbc4c6f153f8aca04e06055ae9c6b24b40218cbc42688d9",
     "https://deno.land/x/yargs_parser@v20.2.4-deno/build/lib/yargs-parser.js": "453200a7dfbb002e605d8009b7dad30f2b1d93665e046ab89c073a4fe63dfd48",
     "https://deno.land/x/yargs_parser@v20.2.4-deno/deno.ts": "ad53c0c82c3982c4fc5be9472384b259e0a32ce1f7ae0f68de7b2445df5642fc",
+    "https://esm.sh/@contiguity/javascript@2.0.0": "dc26fc4407dfa8efc6d360ce0e26249bf692f1f10441820207e196dcecc95b39",
     "https://esm.sh/libphonenumber-js@1.10.34": "55f73d661246950986ba1adbd5c3b696fba9e43b51604323679f0ccf7009c53d",
     "https://esm.sh/libphonenumber-js@1.10.36": "f57b807f327d349af25b85ddaa584a7a55fc2156b53ed5dc64cf2ae910b4f6b3",
     "https://esm.sh/v125/@types/yargs-parser@21.0.0/index.d.ts": "70e9a18da08294f75bf23e46c7d69e67634c0765d355887b9b41f0d959e1426e",
     "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts": "9d3bc5bc71b3fbe3b3edf4388693a659d1c594ca8096abc47425b25a77afa2e3",
     "https://esm.sh/v125/libphonenumber-js@1.10.34/denonext/libphonenumber-js.mjs": "de2789a046a3d787d35feef7f721d419fe28569f5a25ffb18ed66b7746dfbbd2",
     "https://esm.sh/v125/libphonenumber-js@1.10.34/index.d.ts": "d4e6de6fed0f9c35862034a43256a9b3c6874f8c819649cec987a7dcc198a25c",
+    "https://esm.sh/v126/@contiguity/javascript@2.0.0/denonext/javascript.mjs": "f91a08b86b5b02c3170366ed3d7e2b7938c2535455d290505bbfe9ee5711b287",
+    "https://esm.sh/v126/clean-css@4.2.4/denonext/clean-css.mjs": "50f0f044639827def2c46d3c98eb862b831d644abac5d4ed723903be4f262b84",
+    "https://esm.sh/v126/he@1.2.0/denonext/he.mjs": "e03dd3aebe230bfbffbc301a16230c079c268f6c763f0e31eb8f99f8ccba4529",
+    "https://esm.sh/v126/html-minifier@4.0.0/denonext/html-minifier.mjs": "f8a5f7f709c45fafd8a32e6f533c36f17c1f48d7eb5128f7c57560719539a913",
+    "https://esm.sh/v126/isomorphic-unfetch@4.0.2/denonext/isomorphic-unfetch.mjs": "4f937e33e6db49ac599f36b6f639e2346dd55fe831726d6405d92a10a5555014",
     "https://esm.sh/v126/libphonenumber-js@1.10.36/denonext/libphonenumber-js.mjs": "79afc561d01f5a88406dddb897235904e43ee7dc23e2685b882ea65f123c03e2",
-    "https://esm.sh/v126/libphonenumber-js@1.10.36/index.d.ts": "d4e6de6fed0f9c35862034a43256a9b3c6874f8c819649cec987a7dcc198a25c"
+    "https://esm.sh/v126/libphonenumber-js@1.10.36/index.d.ts": "d4e6de6fed0f9c35862034a43256a9b3c6874f8c819649cec987a7dcc198a25c",
+    "https://esm.sh/v126/node_fetch.js": "eb4be18bc6ed9f45aacb943cc12e2d9a7dff73537dc6155b96e8c7ab3f79b6ba",
+    "https://esm.sh/v126/phone@3.1.37/denonext/phone.mjs": "dbe43067e647f06cb4179293b451300f234a7422fab4714e8c2e264dd895e4d3",
+    "https://esm.sh/v126/relateurl@0.2.7/denonext/relateurl.mjs": "98251d69693a0d887b0337c3290ec168d4e867503d0ea041d119e3dd782adcd0",
+    "https://esm.sh/v126/source-map@0.6.1/denonext/source-map.mjs": "ccff3bb06dea7c01a2c83cf12113697592e418fd06b55ae2bb4cb0a4e51a98b8",
+    "https://esm.sh/v126/uglify-js@3.17.4/denonext/uglify-js.mjs": "19bf93c61f5efa3d5252d605a5e3a762cd1fd568432d29343d0470e52c38a050"
   }
 }

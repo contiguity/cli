@@ -1,6 +1,27 @@
 import type yargsTypes from 'yargsTypes'
-import { type crumbs, sendSMS } from '../api.ts'
+import contiguity from '@contiguity/javascript'
 import { ensureKey } from '../config.ts'
+import parsePhoneNumber, { type CountryCode } from 'libphonenumber-js'
+
+const parseNumber = (input: string) => {
+  const parsed = parsePhoneNumber(input, 'US' as CountryCode)
+  if (!(parsed && parsed.isPossible())) {
+    throw new Error(`Invalid phone number: ${input}`)
+  }
+  if (!parsed.isValid()) {
+    console.warn(
+      `Phone number may not be valid: ${parsed.country} ${parsed.formatNational()} (If it is, you may need to update)`,
+    )
+  }
+  return parsed
+}
+
+type crumbs = {
+  plan: string
+  quota: number
+  type: string
+  ad: boolean
+}
 
 export const sendCommand = {
   command: ['send <message>', '* <message>'],
@@ -25,11 +46,12 @@ export const sendCommand = {
   },
   handler: async (argv: yargsTypes.Arguments) => {
     const [key, mock] = ensureKey(argv)
+    const client = contiguity.login(key)
+    const message = String(argv.message)
+    const number = argv.number ? parseNumber(String(argv.number)) : null
     let crumbs: crumbs | null = null
     if (argv.sms) {
-      const number = String(argv.number)
-      const message = String(argv.message)
-      crumbs = await sendSMS(number, message, key, mock)
+      await client.send.text({ recipient: number, message })
     }
     console.log(crumbs)
   },
