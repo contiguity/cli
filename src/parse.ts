@@ -20,6 +20,7 @@ export async function parse(args: string[]) {
     .command(clearKeyCommand)
     .alias('h', 'help')
     .alias('v', 'version')
+    .exitProcess(false)
     .parserConfiguration({
       'parse-numbers': false,
     })
