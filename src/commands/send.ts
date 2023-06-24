@@ -1,5 +1,5 @@
 import type yargsTypes from 'yargsTypes'
-import { parseNumber, getClient } from '../utils.ts'
+import { getClient, parseNumber } from '../utils.ts'
 
 export const sendCommand = {
   command: ['send <message>', '* <message>'],
@@ -71,13 +71,9 @@ export const sendCommand = {
       const subject = argv.subject
         ? String(argv.subject)
         : 'Email from Contiguity CLI'
-      const from = argv.from
-        ? String(argv.from)
-        : 'Contiguity CLI'
+      const from = argv.from ? String(argv.from) : 'Contiguity CLI'
       const html = !!argv.html
-      const replyTo = argv.replyTo
-        ? String(argv.replyTo)
-        : undefined
+      const replyTo = argv.replyTo ? String(argv.replyTo) : undefined
       console.log(
         await client.send.email({
           to: email,

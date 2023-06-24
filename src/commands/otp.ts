@@ -1,5 +1,5 @@
 import type yargsTypes from 'yargsTypes'
-import { parseNumber, getClient } from '../utils.ts'
+import { getClient, parseNumber } from '../utils.ts'
 
 const otpSendCommand = {
   command: 'send <number>',
@@ -29,7 +29,7 @@ const otpSendCommand = {
     const number = parseNumber(String(argv.number))
     const name = argv.name ? String(argv.name) : undefined
     const language = argv.language ? String(argv.language) : 'en'
-    
+
     const otpId = await client.otp.send({
       to: number.number,
       language,
@@ -58,7 +58,7 @@ const otpVerifyCommand = {
 
     if (!argv.otpId) throw new Error('You must provide an OTP ID to verify.')
     if (!argv.otp) throw new Error('You must provide an OTP to verify.')
-    
+
     const result = await client.otp.verify({
       otp_id: String(argv.otp_id),
       otp: String(argv.otp),
@@ -95,7 +95,7 @@ const otpInteractiveCommand = {
     const number = parseNumber(String(argv.number))
     const name = argv.name ? String(argv.name) : undefined
     const language = argv.language ? String(argv.language) : 'en'
-    
+
     const otpId = await client.otp.send({
       to: number.number,
       language,
@@ -110,7 +110,9 @@ const otpInteractiveCommand = {
         otp: providedOtp,
       })
       if (verificationResult) {
-        console.log(`${number.country} ${number.formatNational()} has been verified.`)
+        console.log(
+          `${number.country} ${number.formatNational()} has been verified.`,
+        )
         break
       } else {
         console.log('The OTP was incorrect. Please try again.')
@@ -127,5 +129,5 @@ export const otpCommand = {
       .command(otpInteractiveCommand)
       .command(otpSendCommand)
       .command(otpVerifyCommand)
-  }
+  },
 }
