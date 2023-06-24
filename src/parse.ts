@@ -2,6 +2,7 @@ import yargs from 'yargs'
 import { sendCommand } from './commands/send.ts'
 import { clearKeyCommand, setKeyCommand } from './commands/key.ts'
 import { otpCommand } from './commands/otp.ts'
+import { quotaCommand } from './commands/quota.ts'
 
 export async function parse(args: string[]) {
   return await yargs(args)
@@ -25,6 +26,7 @@ export async function parse(args: string[]) {
     .command(setKeyCommand)
     .command(clearKeyCommand)
     .command(otpCommand)
+    .command(quotaCommand)
     .alias('h', 'help') // -h and -v
     .alias('v', 'version')
     .completion('completion', 'Output the bash completion script') // hidden completion command
