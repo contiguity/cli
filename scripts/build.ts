@@ -39,12 +39,12 @@ await build({
   mappings: {
     // TODO: get this mapping to work (reduces code size)
     'https://deno.land/x/yargs@v17.7.2-deno/deno.ts': {
-     name: 'yargs',
-     version: '^17.7.2',
+      name: 'yargs',
+      version: '^17.7.2',
     },
     'https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts': {
-     name: 'yargs',
-     version: '^17.7.2',
+      name: 'yargs',
+      version: '^17.7.2',
     },
   },
   postBuild() {

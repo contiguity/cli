@@ -40,7 +40,7 @@ export async function parse(args: string[]) {
       'strip-aliased': false,
       'strip-dashed': false,
     })
-  
+
   // dnt-shim-ignore
   // deno-lint-ignore no-explicit-any
   if ((globalThis as any)?.process?.env) parser.env('CONTIGUITY') // Use CONTIGUITY_* env vars in Node.js
