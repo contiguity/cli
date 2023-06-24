@@ -15,11 +15,17 @@ export async function parse(args: string[]) {
       type: 'boolean',
       describe: 'Mock all API requests, key not needed',
     })
+    .option('debug', {
+      alias: 'd',
+      type: 'boolean',
+      describe: 'Print debug information',
+    })
     .command(sendCommand)
     .command(setKeyCommand)
     .command(clearKeyCommand)
     .alias('h', 'help')
     .alias('v', 'version')
+    .completion()
     .exitProcess(false)
     .parserConfiguration({
       'parse-numbers': false,

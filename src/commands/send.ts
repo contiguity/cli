@@ -38,39 +38,41 @@ export const sendCommand = {
         describe: 'Send a text message',
         implies: 'number',
       })
+      .group(['number', 'text'], 'Phone options:')
       .option('email', {
         alias: 'e',
         type: 'string',
         describe: 'Send an email to this address',
       })
-      .option('email-subject', {
+      .option('subject', {
         alias: 's',
         type: 'string',
-        describe: 'Email - Subject line',
+        describe: 'Subject line',
         implies: 'email',
       })
-      .option('email-from', {
+      .option('from', {
         alias: 'f',
         type: 'string',
-        describe: 'Email - Sender of the email',
+        describe: 'Sender of the email',
         implies: 'email',
       })
-      .option('email-html', {
+      .option('html', {
         alias: 'H',
         type: 'boolean',
-        describe: 'Email - Send as HTML',
+        describe: 'Send email as HTML',
         implies: 'email',
       })
-      .option('email-reply-to', {
+      .option('reply-to', {
         alias: 'r',
         type: 'string',
-        describe: 'Email - Reply-to address',
+        describe: 'Reply-to address',
         implies: 'email',
       })
+      .group(['email', 'subject', 'from', 'html', 'reply-to'], 'Email options:')
   },
   handler: async (argv: yargsTypes.Arguments) => {
     const [key, mock] = ensureKey(argv)
-    const client = (mock ? contiguity.mock : contiguity.login)(key)
+    const client = (mock ? contiguity.mock : contiguity.login)(key, !!argv.debug)
     const message = String(argv.message)
     if (!message) throw new Error('A message is required')
 
