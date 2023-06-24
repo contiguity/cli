@@ -32,13 +32,20 @@ await build({
       url: 'https://github.com/use-contiguity/cli/issues',
     },
     homepage: 'https://github.com/use-contiguity/cli#readme',
+    devDependencies: {
+      '@types/yargs': '^17.0.24',
+    },
   },
   mappings: {
     // TODO: get this mapping to work (reduces code size)
-    //'https://deno.land/x/yargs@17.7.2-deno/deno.ts': {
-    //  name: 'yargs',
-    //  version: '^17.7.2',
-    //},
+    'https://deno.land/x/yargs@v17.7.2-deno/deno.ts': {
+     name: 'yargs',
+     version: '^17.7.2',
+    },
+    'https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts': {
+     name: 'yargs',
+     version: '^17.7.2',
+    },
   },
   postBuild() {
     // steps to run after building and before running the tests

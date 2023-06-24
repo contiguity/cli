@@ -20,5 +20,8 @@
   },
   "lint": {
     "exclude": ["npm/**/*"]
+  },
+  "test": {
+    "exclude": ["npm/**/*"]
   }
 }

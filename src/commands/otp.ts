@@ -130,4 +130,5 @@ export const otpCommand = {
       .command(otpSendCommand)
       .command(otpVerifyCommand)
   },
+  handler: () => {},
 }
