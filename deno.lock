@@ -153,12 +153,12 @@
   },
   "npm": {
     "specifiers": {
-      "@contiguity/javascript@2.0.0": "@contiguity/javascript@2.0.0",
+      "@contiguity/javascript@2.0.1": "@contiguity/javascript@2.0.1",
       "libphonenumber-js@1.10.36": "libphonenumber-js@1.10.36"
     },
     "packages": {
-      "@contiguity/javascript@2.0.0": {
-        "integrity": "sha512-i+owzHVQjo4wHnGQSsfqgu+3EBnsRqMSymH/3Cq1T1fGZPGyWwWC6E8w5OvPdDf9yYoi4ONvDsPNgpu4kDN/mA==",
+      "@contiguity/javascript@2.0.1": {
+        "integrity": "sha512-kmhnpti/8sX/B0XxAud/CiWMliFwld4CWz4YFU0g7OSDK099zVPWJJNgZOwI7FV96VjVoIXnMzxcq92q/szAAg==",
         "dependencies": {
           "fs": "fs@0.0.1-security",
           "html-minifier": "html-minifier@4.0.0",

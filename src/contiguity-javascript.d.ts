@@ -38,7 +38,7 @@ declare class Contiguity {
      * @returns {Promise<object>} Returns the response object.
      * @throws {Error} Throws an error if required fields are missing or sending the message fails.
      */
-    text: (object: { recipient: string; message: string }) => Promise<object>
+    text: (object: { to: string; message: string }) => Promise<object>
     /**
      * Send an email.
      * @async
@@ -54,7 +54,7 @@ declare class Contiguity {
      * @throws {Error} Throws an error if required fields are missing or sending the email fails.
      */
     email: (object: {
-      recipient: string
+      to: string
       from: string
       subject: string
       text: string
@@ -108,7 +108,7 @@ declare class Contiguity {
      * @throws {Error} Throws an error if the token, recipient, or language is not provided, or if there is an issue sending the OTP.
      */
     send: (object: {
-      recipient: string
+      to: string
       language: string
       name?: string
     }) => Promise<string>

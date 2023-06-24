@@ -2,10 +2,11 @@
   "tasks": {
     "build": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net scripts/build.ts",
     "cli": "deno run --allow-read --allow-write --allow-net --allow-env src/cli.ts",
-    "test": "deno test --allow-read --allow-write --allow-net --allow-env"
+    "test": "deno test --allow-read --allow-write --allow-net --allow-env",
+    "update-lock": "rm deno.lock 2> /dev/null; deno cache --reload --lock=deno.lock --lock-write src/**/*.ts scripts/**/*.ts"
   },
   "imports": {
-    "@contiguity/javascript": "npm:@contiguity/javascript@2.0.0",
+    "@contiguity/javascript": "npm:@contiguity/javascript@2.0.1",
     "dnt": "https://deno.land/x/dnt@0.37.0/mod.ts",
     "libphonenumber-js": "npm:libphonenumber-js@1.10.36",
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
