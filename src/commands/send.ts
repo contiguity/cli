@@ -18,13 +18,6 @@ const parseNumber = (input: string) => {
   return parsed
 }
 
-type crumbs = {
-  plan: string
-  quota: number
-  type: string
-  ad: boolean
-}
-
 export const sendCommand = {
   command: ['send <message>', '* <message>'],
   describe: 'Send a message',
@@ -45,17 +38,70 @@ export const sendCommand = {
         describe: 'Send a text message',
         implies: 'number',
       })
+      .option('email', {
+        alias: 'e',
+        type: 'string',
+        describe: 'Send an email to this address',
+      })
+      .option('email-subject', {
+        alias: 's',
+        type: 'string',
+        describe: 'Email - Subject line',
+        implies: 'email',
+      })
+      .option('email-from', {
+        alias: 'f',
+        type: 'string',
+        describe: 'Email - Sender of the email',
+        implies: 'email',
+      })
+      .option('email-html', {
+        alias: 'H',
+        type: 'boolean',
+        describe: 'Email - Send as HTML',
+        implies: 'email',
+      })
+      .option('email-reply-to', {
+        alias: 'r',
+        type: 'string',
+        describe: 'Email - Reply-to address',
+        implies: 'email',
+      })
   },
   handler: async (argv: yargsTypes.Arguments) => {
     const [key, mock] = ensureKey(argv)
     const client = (mock ? contiguity.mock : contiguity.login)(key)
     const message = String(argv.message)
+    if (!message) throw new Error('A message is required')
+
     const number = argv.number ? parseNumber(String(argv.number)) : null
-    let response: unknown = null
+    const email = argv.email ? String(argv.email) : null
+
     if (argv.text) {
       if (!number) throw new Error('A number is required to send a text')
-      response = await client.send.text({ recipient: number.number, message })
+      console.log(await client.send.text({ recipient: number.number, message }))
     }
-    console.log(response)
+    if (email) {
+      const subject = argv['email-subject']
+        ? String(argv['email-subject'])
+        : 'Email from Contiguity CLI'
+      const from = argv['email-from']
+        ? String(argv['email-from'])
+        : 'Contiguity'
+      const html = !!argv['email-html']
+      const replyTo = argv['email-reply-to']
+        ? String(argv['email-reply-to'])
+        : undefined
+      console.log(
+        await client.send.email({
+          recipient: email,
+          from,
+          subject,
+          text: html ? '' : message,
+          html: html ? message : '',
+          replyTo,
+        }),
+      )
+    }
   },
 }

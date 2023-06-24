@@ -10,10 +10,10 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Set up Deno
         uses: denoland/setup-deno@v1.1.2
-      
+
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
@@ -29,8 +29,8 @@ jobs:
             ~/.deno
             ~/.cache/deno
           key: ${{ runner.os }}-deno-${{ hashFiles('**/deno.lock', '**/deno.json') }}
-        
-      - name: Format 
+
+      - name: Format
         run: deno fmt
       - name: Lint
         run: deno lint
@@ -38,15 +38,15 @@ jobs:
         run: deno check src/cli.ts
       - name: Test
         run: deno task test
-        
+
       - name: Build and test NPM
         run: deno task build
-      - name: Upload built files
-        uses: actions/upload-artifact@v3.1.2
-        with:
-          name: built
-          path: npm/
-      
+      # - name: Upload built files
+      #   uses: actions/upload-artifact@v3.1.2
+      #   with:
+      #     name: built
+      #     path: npm/
+
       - name: Commit any changes
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
