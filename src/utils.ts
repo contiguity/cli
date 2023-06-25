@@ -3,7 +3,7 @@ import type yargsTypes from 'yargsTypes'
 // temp type override until sourfruit merges my PR
 // @deno-types="./contiguity-javascript.d.ts"
 import contiguity from '@contiguity/javascript'
-import { ensureKey } from './config.ts'
+import { ensureToken } from './config.ts'
 
 type PhoneNumber = {
   countryCallingCode: string
@@ -39,7 +39,10 @@ export const parseNumber = (input: string) => {
 }
 
 export const getClient = async (argv: yargsTypes.Arguments) => {
-  const [key, mock] = await ensureKey(argv)
-  const client = (mock ? contiguity.mock : contiguity.login)(key, !!argv.debug)
+  const [token, mock] = await ensureToken(argv)
+  const client = (mock ? contiguity.mock : contiguity.login)(
+    token,
+    !!argv.debug,
+  )
   return client
 }

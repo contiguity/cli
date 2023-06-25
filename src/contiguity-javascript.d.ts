@@ -92,7 +92,7 @@ declare class Contiguity {
      * Get quota information.
      * @async
      * @returns {Promise<object>} Returns the response object containing the quota information.
-     * @throws {Error} Throws an error if the token/API key is not provided or if there is an issue retrieving the quota.
+     * @throws {Error} Throws an error if the token/API token is not provided or if there is an issue retrieving the quota.
      */
     retrieve: () => Promise<object>
   }

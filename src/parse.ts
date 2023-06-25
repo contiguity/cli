@@ -1,15 +1,15 @@
 // @deno-types="yargsTypes"
 import yargs from 'yargs'
 import { sendCommand } from './commands/send.ts'
-import { clearKeyCommand, setKeyCommand } from './commands/key.ts'
-import { checkKeyCommand } from './commands/checkKey.ts'
+import { clearTokenCommand, setTokenCommand } from './commands/token.ts'
+import { checkTokenCommand } from './commands/checkToken.ts'
 import { otpCommand } from './commands/otp.ts'
 import { quotaCommand } from './commands/quota.ts'
 
 const examples: [command: string, description: string][] = [
   [
-    '$0 set-key',
-    'Set key before using other commands',
+    '$0 set-token',
+    'Set token before using other commands',
   ],
   [
     '$0 --number "(234) 567-8910" --text "Hello, world!"',
@@ -55,15 +55,15 @@ const terminalWidth = processSupported
 export async function cli(args: string[] = Deno.args) {
   const parser = yargs(args)
     .scriptName('contiguity') // assume contiguity is the name of the command
-    .option('key', { // global options
+    .option('token', { // global options
       alias: 'k',
-      describe: 'Your Contiguity key',
+      describe: 'Your Contiguity token',
       type: 'string',
     })
     .option('mock', {
       alias: 'm',
       type: 'boolean',
-      describe: 'Mock all API requests, key not needed',
+      describe: 'Mock all API requests, token not needed',
     })
     .option('debug', {
       alias: 'd',
@@ -72,9 +72,9 @@ export async function cli(args: string[] = Deno.args) {
     })
     .command(sendCommand) // register commands
     .command(otpCommand)
-    .command(setKeyCommand)
-    .command(clearKeyCommand)
-    .command(checkKeyCommand)
+    .command(setTokenCommand)
+    .command(clearTokenCommand)
+    .command(checkTokenCommand)
     .command(quotaCommand)
     .alias('h', 'help') // -h and -v
     .alias('v', 'version')
