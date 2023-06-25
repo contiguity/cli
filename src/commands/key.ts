@@ -11,8 +11,8 @@ export const setKeyCommand = {
         describe: 'Your Contiguity key',
       })
   },
-  handler: (argv: yargsTypes.Arguments) => {
-    const key = getKey(argv.key ? String(argv.key) : undefined, true)
+  handler: async (argv: yargsTypes.Arguments) => {
+    const key = await getKey(argv.key ? String(argv.key) : undefined, true)
     if (key) {
       storeKey(key)
       console.log('The key has been set.')

@@ -38,8 +38,8 @@ export const parseNumber = (input: string) => {
   return parsed
 }
 
-export const getClient = (argv: yargsTypes.Arguments) => {
-  const [key, mock] = ensureKey(argv)
+export const getClient = async (argv: yargsTypes.Arguments) => {
+  const [key, mock] = await ensureKey(argv)
   const client = (mock ? contiguity.mock : contiguity.login)(key, !!argv.debug)
   return client
 }

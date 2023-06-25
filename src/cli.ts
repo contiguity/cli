@@ -1,3 +1,3 @@
-import { parse } from './parse.ts'
+import { cli } from './parse.ts'
 
-await parse(Deno.args)
+await cli(Deno.args)

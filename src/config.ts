@@ -1,4 +1,5 @@
 import type yargsTypes from 'yargsTypes'
+import { Input } from 'cliffyPrompts'
 import { join } from 'path'
 
 const homeDir = Deno.build.os === 'windows'
@@ -15,7 +16,11 @@ export function clearStoredKey() {
   Deno.removeSync(keyPath)
 }
 
-export function getKey(givenKey?: string, noStored?: boolean) {
+export async function getKey(
+  givenKey?: string,
+  noStored?: boolean,
+  noPrompt?: boolean,
+) {
   if (givenKey) return givenKey
   if (!noStored) {
     try {
@@ -25,18 +30,26 @@ export function getKey(givenKey?: string, noStored?: boolean) {
       // the key has not been set
     }
   }
-  const providedKey = prompt('Contiguity API key:')
-  if (providedKey) return providedKey
+  if (!noPrompt) {
+    const providedKey = await Input.prompt({
+      message: 'Contiguity API key',
+      hint:
+        'Generate a revokable token at https://contiguity.co/dashboard/tokens.',
+      maxLength: 21,
+      suggestions: ['mock'],
+    })
+    if (providedKey) return providedKey
+  }
   return null
 }
 
-export function ensureKey(
+export async function ensureKey(
   argv: yargsTypes.Arguments,
-): [key: string, mock: boolean] {
+): Promise<[key: string, mock: boolean]> {
   const givenKey = 'key' in argv ? String(argv.key) : undefined
   const mock = 'mock' in argv ? !!argv.mock : false
 
-  const key = getKey(mock ? 'mock' : givenKey)
+  const key = await getKey(mock ? 'mock' : givenKey)
   if (!key) {
     throw new Error(
       'A key is required because one is not saved and --mock was not used.',

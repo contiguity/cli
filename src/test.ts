@@ -1,8 +1,8 @@
-import { parse } from './parse.ts'
+import { cli } from './parse.ts'
 
 async function testCLI(args: string[]) {
   console.log('testing CLI with args', args)
-  const argv = await parse(args)
+  const argv = await cli(args)
   console.log('argv', argv)
   return argv
 }

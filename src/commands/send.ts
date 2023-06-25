@@ -2,7 +2,7 @@ import type yargsTypes from 'yargsTypes'
 import { getClient, parseNumber } from '../utils.ts'
 
 export const sendCommand = {
-  command: ['send <message>', '* <message>'],
+  command: '* <message>',
   describe: 'Send a message',
   builder: (yargs: yargsTypes.Argv) => {
     return yargs
@@ -54,7 +54,7 @@ export const sendCommand = {
       .group(['email', 'subject', 'from', 'html', 'reply-to'], 'Email options:')
   },
   handler: async (argv: yargsTypes.Arguments) => {
-    const client = getClient(argv)
+    const client = await getClient(argv)
 
     const message = String(argv.message)
     if (!message) throw new Error('A message is required')

@@ -9,6 +9,11 @@ await build({
       name: 'contiguity',
       path: './src/cli.ts',
     },
+    {
+      kind: 'bin',
+      name: '@jerbear4328/contiguity-cli',
+      path: './src/cli.ts',
+    },
   ],
   outDir: './npm',
   shims: {
@@ -19,7 +24,7 @@ await build({
   scriptModule: false,
   importMap: 'deno.json',
   package: {
-    name: 'contiguity-cli',
+    name: '@jerbear4328/contiguity-cli',
     description: '',
     version: '1.0.0',
     repository: {

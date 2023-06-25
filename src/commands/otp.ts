@@ -23,7 +23,7 @@ const otpSendCommand = {
       })
   },
   handler: async (argv: yargsTypes.Arguments) => {
-    const client = getClient(argv)
+    const client = await getClient(argv)
 
     if (!argv.number) throw new Error('You must provide a number to verify.')
     const number = parseNumber(String(argv.number))
@@ -54,7 +54,7 @@ const otpVerifyCommand = {
       })
   },
   handler: async (argv: yargsTypes.Arguments) => {
-    const client = getClient(argv)
+    const client = await getClient(argv)
 
     if (!argv.otpId) throw new Error('You must provide an OTP ID to verify.')
     if (!argv.otp) throw new Error('You must provide an OTP to verify.')
@@ -89,7 +89,7 @@ const otpInteractiveCommand = {
       })
   },
   handler: async (argv: yargsTypes.Arguments) => {
-    const client = getClient(argv)
+    const client = await getClient(argv)
 
     if (!argv.number) throw new Error('You must provide a number to verify.')
     const number = parseNumber(String(argv.number))
