@@ -35,7 +35,6 @@ export async function getToken(
       message: 'Contiguity API token',
       hint:
         'Generate a revokable token at https://contiguity.co/dashboard/tokens.',
-      maxLength: 21,
       suggestions: ['mock'],
     })
     if (providedToken) return providedToken
