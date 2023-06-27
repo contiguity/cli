@@ -1,5 +1,6 @@
 // @deno-types="yargsTypes"
 import yargs from 'yargs'
+import { terminalWidth, getArt } from './terminal.ts'
 import { sendCommand } from './commands/send.ts'
 import { clearTokenCommand, setTokenCommand } from './commands/token.ts'
 import { checkTokenCommand } from './commands/checkToken.ts'
@@ -37,20 +38,9 @@ const examples: [command: string, description: string][] = [
   ],
 ]
 
-// Some slightly ugly code to make the help output look nice cross-platform
 // dnt-shim-ignore
 // deno-lint-ignore no-explicit-any
 const processSupported = !!(globalThis as any)?.process
-const terminalWidth = processSupported
-  // dnt-shim-ignore
-  // deno-lint-ignore no-explicit-any
-  ? (globalThis as any).process?.stdout.columns as number
-  // dnt-shim-ignore
-  // deno-lint-ignore no-explicit-any
-  : ((globalThis as any).Deno.consoleSize() as {
-    rows: number
-    columns: number
-  }).columns
 
 export async function cli(args: string[] = Deno.args) {
   const parser = yargs(args)
@@ -89,9 +79,14 @@ export async function cli(args: string[] = Deno.args) {
       'strip-aliased': false,
       'strip-dashed': false,
     })
-    .wrap(terminalWidth ?? null) // wrap help text to terminal width
+    .wrap(terminalWidth()) // wrap help text to terminal width
 
   if (processSupported) parser.env('CONTIGUITY') // Use CONTIGUITY_* env vars in Node.js
 
-  return await parser.parse()
+  if (args.length === 0) {
+    console.log(getArt(terminalWidth()))
+    return parser.showHelp()
+  } else {
+    return await parser.parse()
+  }
 }

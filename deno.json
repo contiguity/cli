@@ -12,7 +12,8 @@
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
     "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts",
     "path": "https://deno.land/std@0.192.0/path/mod.ts",
-    "cliffyPrompts": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts"
+    "cliffyPrompts": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts",
+    "std/": "https://deno.land/std@0.192.0/"
   },
   "fmt": {
     "semiColons": false,
