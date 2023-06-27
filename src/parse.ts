@@ -1,6 +1,6 @@
 // @deno-types="yargsTypes"
 import yargs from 'yargs'
-import { terminalWidth, getArt } from './terminal.ts'
+import { getArt, terminalWidth } from './terminal.ts'
 import { sendCommand } from './commands/send.ts'
 import { clearTokenCommand, setTokenCommand } from './commands/token.ts'
 import { checkTokenCommand } from './commands/checkToken.ts'

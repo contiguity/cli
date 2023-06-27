@@ -1,23 +1,29 @@
 import * as colors from 'std/fmt/colors.ts'
 
 const art = {
-//   banner: { // kinda doesn't work in VSCode's integrated terminal
-//     text: `\
-// ${colors.bgWhite(colors.black('                                                                   '))}
-// ${colors.bgWhite(colors.black(`       ___         _   _           _ _         ${colors.blue('  ___ _    ___ ')}     `))}
-// ${colors.bgWhite(colors.black(`      / __|___ _ _| |_(_)__ _ _  _(_) |_ _  _  ${colors.blue(' / __| |  |_ _|')}     `))}
-// ${colors.bgWhite(colors.black(`     | (__/ _ \\ ' \\  _| / _\` | || | |  _| || | ${colors.blue('| (__| |__ | | ')}     `))}
-// ${colors.bgWhite(colors.black(`      \\___\\___/_||_\\__|_\\__, |\\_,_|_|\\__|\\_, | ${colors.blue(' \\___|____|___|')}     `))}
-// ${colors.bgWhite(colors.black('                        |___/            |__/                      '))}
-// ${colors.bgWhite(colors.black('                                                                   '))}
-// `,
-//     width: 67,
-//   },
+  //   banner: { // kinda doesn't work in VSCode's integrated terminal
+  //     text: `\
+  // ${colors.bgWhite(colors.black('                                                                   '))}
+  // ${colors.bgWhite(colors.black(`       ___         _   _           _ _         ${colors.blue('  ___ _    ___ ')}     `))}
+  // ${colors.bgWhite(colors.black(`      / __|___ _ _| |_(_)__ _ _  _(_) |_ _  _  ${colors.blue(' / __| |  |_ _|')}     `))}
+  // ${colors.bgWhite(colors.black(`     | (__/ _ \\ ' \\  _| / _\` | || | |  _| || | ${colors.blue('| (__| |__ | | ')}     `))}
+  // ${colors.bgWhite(colors.black(`      \\___\\___/_||_\\__|_\\__, |\\_,_|_|\\__|\\_, | ${colors.blue(' \\___|____|___|')}     `))}
+  // ${colors.bgWhite(colors.black('                        |___/            |__/                      '))}
+  // ${colors.bgWhite(colors.black('                                                                   '))}
+  // `,
+  //     width: 67,
+  //   },
   big: {
     text: `\
-   ___         _   _           _ _         ${colors.brightBlue('  ___ _    ___  ')}
-  / __|___ _ _| |_(_)__ _ _  _(_) |_ _  _  ${colors.brightBlue(' / __| |  |_ _| ')}
- | (__/ _ \\ ' \\  _| / _\` | || | |  _| || | ${colors.brightBlue('| (__| |__ | |  ')}
+   ___         _   _           _ _         ${
+      colors.brightBlue('  ___ _    ___  ')
+    }
+  / __|___ _ _| |_(_)__ _ _  _(_) |_ _  _  ${
+      colors.brightBlue(' / __| |  |_ _| ')
+    }
+ | (__/ _ \\ ' \\  _| / _\` | || | |  _| || | ${
+      colors.brightBlue('| (__| |__ | |  ')
+    }
   \\___\\___/_||_\\__|_\\__, |\\_,_|_|\\__|\\_, | ${
       colors.brightBlue(' \\___|____|___| ')
     }
@@ -44,7 +50,7 @@ const art = {
 export function getArt(targetWidth = terminalWidth()) {
   if (targetWidth === null) return art.medium
 
-  for (const {text, width} of Object.values(art)) {
+  for (const { text, width } of Object.values(art)) {
     if (width < targetWidth) return text
   }
   return art.small.text
