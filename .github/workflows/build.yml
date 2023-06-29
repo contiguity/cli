@@ -50,8 +50,9 @@ jobs:
       #   with:
       #     name: built
       #     path: npm/
-      - run: Publish to NPM
-        if: contains(github.event.head_commit.message, '[push]')
+      - name: Publish to NPM
+        run: npm publish
+        if: contains(github.event.head_commit.message, '[publish]')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
