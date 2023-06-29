@@ -21,6 +21,10 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Set up Deno
         uses: denoland/setup-deno@v1.1.2
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -46,6 +50,10 @@ jobs:
       #   with:
       #     name: built
       #     path: npm/
+      - run: Publish to NPM
+        if: contains(github.event.head_commit.message, '[push]')
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit any changes
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
