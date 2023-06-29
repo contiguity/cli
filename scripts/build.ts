@@ -4,6 +4,7 @@ await emptyDir('./npm')
 
 await build({
   entryPoints: [
+    './src/mod.ts',
     {
       kind: 'bin',
       name: 'contiguity',
@@ -11,7 +12,7 @@ await build({
     },
     {
       kind: 'bin',
-      name: '@jerbear4328/contiguity-cli',
+      name: '@contiguity/cli',
       path: './src/cli.ts',
     },
   ],
@@ -24,14 +25,14 @@ await build({
   scriptModule: false,
   importMap: 'deno.json',
   package: {
-    name: '@jerbear4328/contiguity-cli',
+    name: '@contiguity/cli',
     description: '',
-    version: '1.0.3',
+    version: '1.0.0',
     repository: {
       'type': 'git',
       'url': 'git+https://github.com/use-contiguity/cli.git',
     },
-    author: 'jerbear4328',
+    author: 'Contiguity',
     license: 'MIT',
     bugs: {
       url: 'https://github.com/use-contiguity/cli/issues',
@@ -42,7 +43,6 @@ await build({
     },
   },
   mappings: {
-    // TODO: get this mapping to work (reduces code size)
     'https://deno.land/x/yargs@v17.7.2-deno/deno.ts': {
       name: 'yargs',
       version: '^17.7.2',
