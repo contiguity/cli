@@ -4,7 +4,8 @@ CLI for interacting with the [Contiguity](https://contiguity.co) API.
 
 ## Installation
 
-Install it with `npm install -g contiguity-cli`, or use it without installing with `npx @contiguity/cli`.
+Install it with `npm install -g contiguity-cli`, or use it without installing
+with `npx @contiguity/cli`.
 
 ## Usage
 
