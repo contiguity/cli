@@ -1,4 +1,5 @@
 import type yargsTypes from 'yargsTypes'
+import { Input } from 'cliffyPrompts'
 import { getClient, parseNumber } from '../utils.ts'
 
 const otpSendCommand = {
@@ -103,7 +104,10 @@ const otpInteractiveCommand = {
     })
 
     while (true) {
-      const providedOtp = prompt('Enter the OTP:')?.trim()
+      const providedOtp = await Input.prompt({
+        message: 'Enter the OTP:',
+        hint: `It was sent to ${number.formatNational()}`,
+      })
       if (!providedOtp) continue
       const verificationResult = await client.otp.verify({
         otp_id: otpId,

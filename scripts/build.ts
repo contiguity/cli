@@ -27,7 +27,7 @@ await build({
   package: {
     name: '@contiguity/cli',
     description: '',
-    version: '1.0.1',
+    version: '1.0.2',
     repository: {
       'type': 'git',
       'url': 'git+https://github.com/use-contiguity/cli.git',
