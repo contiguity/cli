@@ -1,24 +1,27 @@
-# Contiguity CLI
+<p align='center'><img src="https://contiguity.co/assets/icon-black.png" height="150px"/></p>
+<h1 align='center'>Contiguity CLI</h1>
 
-CLI for interacting with the [Contiguity](https://contiguity.co) API.
+<p align='center'>
+    <img display="inline-block" src="https://img.shields.io/npm/v/@contiguity/cli?style=for-the-badge" /> <img display="inline-block" src="https://img.shields.io/bundlephobia/minzip/@contiguity/cli?style=for-the-badge" /> <img display="inline-block" src="https://img.shields.io/badge/Made%20with-TypeScript-blue?style=for-the-badge" />
+</p>
+<p align='center'>Contiguity CLI provides a command-line interface to interact with Contiguity’s API.</p>
 
 ## Installation
 
-Install it with `npm install -g contiguity-cli`, or use it without installing
-with `npx @contiguity/cli`.
+Using Contiguity CLI requires Node.js to be installed. 
 
-## Usage
+You can install the Contiguity CLI globally using the following command:
 
-Run `contiguity` to see the documentaion on all of the CLI's commands.
+```bash
+$ npm install -g contiguity-cli
+```
 
-## Examples
+## Setup
 
-| Command                                                          | Description                           |
-| ---------------------------------------------------------------- | ------------------------------------- |
-| `contiguity set-token`                                           | Set token before using other commands |
-| `contiguity --number "(234) 567-8910" --text "Hello, world!"`    | Send a text message                   |
-| `contiguity -tn +12345678910 "Hello, world!"`                    | Same as above but with shorthands     |
-| `contiguity --email "user@example.com" "Hello, world!"`          | Send a basic email                    |
-| `contiguity otp "(234) 567-8910"`                                | Verify phone number with OTP          |
-| `contiguity quota`                                               | Check your account quota              |
-| `CONTIGUITY_NUMBER=2345678910 CONTIGUITY_TEXT=1 contiguity "Hi"` | Set any option with env vars          |
+Before using other commands, set your Contiguity API token using the following command:
+
+```bash
+$ contiguity set-token <your_token_here>
+```
+
+#### Read more about using the CLI in the docs, at [docs.contiguity.co](https://docs.contiguity.co/#/cli/)
