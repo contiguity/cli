@@ -1,5 +1,5 @@
 import { cli } from './parse.ts'
 
-process.removeAllListeners('warning')
+// process.removeAllListeners('warning')
 
 await cli(Deno.args)

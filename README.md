@@ -8,7 +8,7 @@
 
 ## Installation
 
-Using Contiguity CLI requires Node.js to be installed. 
+Using Contiguity CLI requires Node.js to be installed.
 
 You can install the Contiguity CLI globally using the following command:
 
@@ -18,7 +18,8 @@ $ npm install -g contiguity-cli
 
 ## Setup
 
-Before using other commands, set your Contiguity API token using the following command:
+Before using other commands, set your Contiguity API token using the following
+command:
 
 ```bash
 $ contiguity set-token <your_token_here>
