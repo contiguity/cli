@@ -41,6 +41,7 @@ await build({
     devDependencies: {
       '@types/yargs': '^17.0.24',
     },
+    man: ['contiguity.1'],
   },
   mappings: {
     'https://deno.land/x/yargs@v17.7.2-deno/deno.ts': {
@@ -52,9 +53,10 @@ await build({
       version: '^17.7.2',
     },
   },
-  postBuild() {
+  async postBuild() {
     // steps to run after building and before running the tests
-    Deno.copyFileSync('LICENSE', 'npm/LICENSE')
-    Deno.copyFileSync('README.md', 'npm/README.md')
+    await Deno.copyFile('LICENSE', 'npm/LICENSE')
+    await Deno.copyFile('README.md', 'npm/README.md')
+    await Deno.copyFile('man/contiguity.1', 'npm/contiguity.1')
   },
 })

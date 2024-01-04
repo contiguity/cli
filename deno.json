@@ -1,8 +1,14 @@
 {
   "tasks": {
-    "build": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net scripts/build.ts",
+    "build": "deno task build-man && deno task build-npm",
+
+    "build-npm": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net scripts/build.ts",
     "cli": "deno run --allow-read --allow-write --allow-net --allow-env src/cli.ts",
     "test": "deno test --allow-read --allow-write --allow-net --allow-env",
+
+    "build-man": "pandoc man/contiguity.1.md -s -f markdown-smart -t man -o man/contiguity.1",
+    "preview-man": "deno task build-man && man -l man/contiguity.1",
+
     "update-lock": "rm deno.lock 2> /dev/null; deno cache --reload --lock=deno.lock --lock-write src/**/*.ts scripts/**/*.ts"
   },
   "imports": {

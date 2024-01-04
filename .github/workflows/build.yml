@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: 'https://registry.npmjs.org'
+      - name: Set up Pandoc
+        run: sudo apt-get install pandoc
 
       - name: Cache dependencies
         uses: actions/cache@v3
