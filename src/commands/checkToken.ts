@@ -2,7 +2,6 @@ import type yargsTypes from 'yargsTypes'
 // temp type override until sourfruit merges my PR
 import contiguity from '@contiguity/javascript'
 import { getToken, storeToken } from '../config.ts'
-import * as colors from 'std/fmt/colors.ts'
 
 export const checkTokenCommand = {
   command: 'check-token',
