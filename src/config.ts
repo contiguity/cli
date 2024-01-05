@@ -35,7 +35,7 @@ const oldDir = join(
   '.contiguity',
 )
 try {
-  if (Deno.statSync(oldDir).isDirectory) { 
+  if (Deno.statSync(oldDir).isDirectory) {
     Deno.renameSync(oldDir, configDir)
   }
 } catch {
