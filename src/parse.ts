@@ -59,6 +59,13 @@ export async function cli(args: string[] = Deno.args) {
       alias: 'd',
       type: 'boolean',
       describe: 'Print debug information',
+      conflicts: 'json',
+    })
+    .option('json', {
+      alias: 'j',
+      type: 'boolean',
+      describe: 'Give all output as JSON',
+      conflicts: 'debug',
     })
     .command(sendCommand) // register commands
     .command(otpCommand)

@@ -12,13 +12,13 @@
     "update-lock": "rm deno.lock 2> /dev/null; deno cache --reload --lock=deno.lock --lock-write src/**/*.ts scripts/**/*.ts"
   },
   "imports": {
-    "@contiguity/javascript": "npm:@contiguity/javascript@2.0.1",
+    "@contiguity/javascript": "npm:@contiguity/javascript@2.0.2",
     "dnt": "https://deno.land/x/dnt@0.37.0/mod.ts",
     "libphonenumber-js": "npm:libphonenumber-js@1.10.36",
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
     "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts",
     "cliffyPrompts": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts",
-    "std/": "https://deno.land/std@0.192.0/"
+    "std/": "https://deno.land/std@0.211.0/"
   },
   "fmt": {
     "semiColons": false,

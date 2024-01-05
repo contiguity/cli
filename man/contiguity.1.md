@@ -10,14 +10,14 @@
 
 <!-- deno-fmt-ignore-start -->
 | **contiguity**<br>
-| **contiguity** \[**-kmdhv**] \[**-tn** _number_] \[**-e** _email_ \[**-s** _subject_] \[**-f** _sender_] \[**-H**] \[**-r** _email_]] "_message_"<br>
-| **contiguity** \[**-kmdhv**] **otp** \[**-n** _name_] \[**-l** _language_] _number_<br>
-| **contiguity** \[**-kmdhv**] **otp** send \[**-n** _name_] \[**-l** _language_] _number_<br>
-| **contiguity** \[**-kmdhv**] **otp** verify _otp-id_ _otp_<br>
-| **contiguity** \[**-kmdhv**] **set-token** \[_token_]<br>
-| **contiguity** \[**-kmdhv**] **clear-token**<br>
-| **contiguity** \[**-kmdhv**] **check-token**<br>
-| **contiguity** \[**-kmdhv**] **quota**
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] \[**-tn** _number_] \[**-e** _email_ \[**-s** _subject_] \[**-f** _sender_] \[**-H**] \[**-r** _email_]] "_message_"<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **otp** \[**-n** _name_] \[**-l** _language_] _number_<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **otp** send \[**-n** _name_] \[**-l** _language_] _number_<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **otp** verify _otp-id_ _otp_<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **set-token** \[_token_]<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **clear-token**<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **check-token**<br>
+| **contiguity** \[**-kmhv**] \[**-d**|**-j**] **quota**
 <!-- deno-fmt-ignore-end -->
 
 # DESCRIPTION
@@ -87,7 +87,16 @@ setting the token to "**`mock`**".
 
 -d, --debug
 
-: Print debug information about what the CLI is doing.
+: Print debug information about what the CLI is doing. Incompatible with the
+--json option.
+
+-j, --json
+
+: Print a JSON response to stdout if the CLI is successful. Incompatible with
+the --debug option and any interactive commands. If the CLI is successful, the
+exit code will be 0 and the only output on stdout will be a single JSON object
+describing the result of the command. Other logging will still be printed to
+stderr.
 
 -h, --help
 
@@ -145,7 +154,8 @@ the email, it will be sent to this address. Requires **--email**.
 
 **-n**, **--name** _name_
 
-: The name of the service to use in the text message. Defaults to "Contiguity".
+: The name of the service to use in the text message. Optional but reccomended,
+if not specified the message will not contain a name.
 
 **-l, --language** _language_
 
@@ -161,7 +171,7 @@ text message with just **`contiguity "Hello, World!"`**.
 
 # FILES
 
-**~/.contiguity/token**
+**~/.config/contiguity/token**
 
 : The token used by the CLI. This is set with **contiguity set-token**. If this
 file contains the special value "**`mock`**", the CLI will use the **--mock**
@@ -169,14 +179,14 @@ mode unless overridden.
 
 # SECURITY
 
-The CLI stores your token in plaintext in the file **~/.contiguity/token**. If
-an attacker has gained access to your computer, they will be able to access any
-token stored on it, regardless of any protections we could have put in place.
-You should always use a revokable token, and revoke it if you think it has been
-compromised. You can generate a revokable token at
-https://contiguity.co/dashboard/tokens. If this storage is a concern for you,
-you can use the **--token** option or the **CONTIGUITY_TOKEN** environment
-variable to specify your token.
+The CLI stores your token in plaintext in the file
+**~/.config/contiguity/token**. If an attacker has gained access to your
+computer, they will be able to access any token stored on it, regardless of any
+protections we could have put in place. You should always use a revokable token,
+and revoke it if you think it has been compromised. You can generate a revokable
+token at https://contiguity.co/dashboard/tokens. If this storage is a concern
+for you, you can use the **--token** option or the **CONTIGUITY_TOKEN**
+environment variable to specify your token.
 
 # EXAMPLES
 

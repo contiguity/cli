@@ -7,9 +7,9 @@ async function testCLI(args: string[]) {
   return argv
 }
 
-// Deno.test('Mock text message', async () => {
-//   await testCLI(['--mock', '-tn', '+12345678910', '"Hello world!"'])
-// })
+Deno.test('Mock text message', async () => {
+  await testCLI(['--mock', '-tn', '+12345678910', '"Hello world!"', '--json'])
+})
 
 Deno.test('Check help message', async () => {
   await testCLI(['-h'])

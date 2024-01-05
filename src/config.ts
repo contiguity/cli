@@ -24,7 +24,7 @@ function osConfigDir() {
   }
 }
 
-export const configDir = join(osConfigDir(), '.contiguity')
+export const configDir = join(osConfigDir(), 'contiguity')
 
 // Move the old config directory if it exists
 // This code is temporary and can be removed in a future release

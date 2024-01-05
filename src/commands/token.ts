@@ -1,5 +1,6 @@
 import type yargsTypes from 'yargsTypes'
 import { clearStoredToken, getToken, storeToken } from '../config.ts'
+import { getLogger } from '../utils.ts'
 
 export const setTokenCommand = {
   command: 'set-token [token]',
@@ -12,16 +13,19 @@ export const setTokenCommand = {
       })
   },
   handler: async (argv: yargsTypes.Arguments) => {
+    const logger = getLogger(argv)
+
     const token = await getToken(
       argv.token ? String(argv.token) : undefined,
       true,
+      !!argv.json,
     )
     if (token) {
       storeToken(token)
-      console.log('The token has been set.')
+      logger.result('The token has been set.', { success: true })
     } else {
-      console.log(
-        'You must provide a token. To clear the saved token, use the token clear command.',
+      throw new Error(
+        'You must provide a token. To clear the saved token, use the clear-token command.',
       )
     }
   },

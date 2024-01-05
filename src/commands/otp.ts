@@ -1,6 +1,7 @@
 import type yargsTypes from 'yargsTypes'
 import { Input } from 'cliffyPrompts'
-import { getClient, parseNumber } from '../utils.ts'
+import { getClient, getLogger, parseNumber } from '../utils.ts'
+import * as colors from 'std/fmt/colors.ts'
 
 const otpSendCommand = {
   command: 'send <number>',
@@ -22,9 +23,11 @@ const otpSendCommand = {
         default: 'en',
         describe: 'The language to send the OTP in',
       })
+      .group(['name', 'language'], 'OTP options:')
   },
   handler: async (argv: yargsTypes.Arguments) => {
     const client = await getClient(argv)
+    const logger = getLogger(argv)
 
     if (!argv.number) throw new Error('You must provide a number to verify.')
     const number = parseNumber(String(argv.number))
@@ -36,7 +39,12 @@ const otpSendCommand = {
       language,
       name,
     })
-    console.log(otpId)
+    logger.result(
+      `${
+        colors.green(`OTP sent to ${number.formatNational()}`)
+      }\nOTP ID: ${otpId}`,
+      { otpId },
+    )
   },
 }
 
@@ -56,6 +64,7 @@ const otpVerifyCommand = {
   },
   handler: async (argv: yargsTypes.Arguments) => {
     const client = await getClient(argv)
+    const logger = getLogger(argv)
 
     if (!argv.otpId) throw new Error('You must provide an OTP ID to verify.')
     if (!argv.otp) throw new Error('You must provide an OTP to verify.')
@@ -64,7 +73,14 @@ const otpVerifyCommand = {
       otp_id: String(argv.otp_id),
       otp: String(argv.otp),
     })
-    console.log(result ? 'true' : 'false')
+    logger.result(
+      `${
+        result
+          ? colors.green('OTP verified')
+          : colors.red('OTP verification failed')
+      }`,
+      { result },
+    )
   },
 }
 
@@ -87,6 +103,15 @@ const otpInteractiveCommand = {
         type: 'string',
         default: 'en',
         describe: 'The language to send the OTP in',
+      })
+      .group(['name', 'language'], 'OTP options:')
+      .check((argv) => {
+        if (argv.json) {
+          throw new Error(
+            'JSON output is not supported for interactive commands.',
+          )
+        }
+        return true
       })
   },
   handler: async (argv: yargsTypes.Arguments) => {
