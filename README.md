@@ -25,7 +25,7 @@ Before using other commands, set your Contiguity API token using the following
 command:
 
 ```bash
-$ contiguity set-token <your_token_here>
+$ contiguity set-token
 ```
 
 ## Building

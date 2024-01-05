@@ -21,7 +21,7 @@ export const setTokenCommand = {
       console.log('The token has been set.')
     } else {
       console.log(
-        'You must provide a token. To clear the saved token, use the clear-token command.',
+        'You must provide a token. To clear the saved token, use the token clear command.',
       )
     }
   },

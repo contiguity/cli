@@ -1,11 +1,46 @@
 import type yargsTypes from 'yargsTypes'
 import { Input } from 'cliffyPrompts'
-import { join } from 'path'
+import { join } from 'std/path/mod.ts'
 
-const homeDir = Deno.build.os === 'windows'
-  ? Deno.env.get('USERPROFILE') || 'C:\\Program Files'
-  : Deno.env.get('HOME') || '~'
-export const configDir = join(homeDir, '.contiguity')
+/** Gets the config directory for the current user */
+function osConfigDir() {
+  switch (Deno.build.os) {
+    case 'windows':
+      return Deno.env.get('APPDATA') || 'C:\\Program Files'
+
+    case 'darwin': {
+      const home = Deno.env.get('HOME') || '~'
+      return join(home, 'Library', 'Preferences')
+    }
+
+    case 'linux':
+    default: {
+      const xdgConfigDir = Deno.env.get('XDG_CONFIG_HOME')
+      if (xdgConfigDir) return xdgConfigDir
+
+      const home = Deno.env.get('HOME') || '~'
+      return join(home, '.config')
+    }
+  }
+}
+
+export const configDir = join(osConfigDir(), '.contiguity')
+
+// Move the old config directory if it exists
+// This code is temporary and can be removed in a future release
+const oldDir = join(
+  Deno.build.os === 'windows'
+    ? Deno.env.get('USERPROFILE') || 'C:\\Program Files'
+    : Deno.env.get('HOME') || '~',
+  '.contiguity',
+)
+try {
+  if (Deno.statSync(oldDir).isDirectory) { 
+    Deno.renameSync(oldDir, configDir)
+  }
+} catch {
+  // the old directory does not exist or both directories exist or something
+}
 
 const tokenPath = join(configDir, 'token')
 export function storeToken(token: string) {
