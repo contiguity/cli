@@ -10,14 +10,14 @@ import { quotaCommand } from './commands/quota.ts'
 const examples: [command: string, description: string][] = [
   [
     '$0 set-token',
-    'Set token before using other commands',
+    'Store your Contiguity token',
   ],
   [
-    '$0 --number "(234) 567-8910" --text "Hello, world!"',
+    '$0 --number "(555) 555-5555" --text "Hello, world!"',
     'Send a text message',
   ],
   [
-    '$0 -tn +12345678910 "Hello, world!"',
+    '$0 -tn +15555555555 "Hello, world!"',
     'Same but with shorthands',
   ],
   [
@@ -25,7 +25,7 @@ const examples: [command: string, description: string][] = [
     'Send a basic email',
   ],
   [
-    '$0 otp "(234) 567-8910"',
+    '$0 otp "(555) 555-5555"',
     'Verify phone number with OTP',
   ],
   [
@@ -33,7 +33,7 @@ const examples: [command: string, description: string][] = [
     'Check your account quota',
   ],
   [
-    'CONTIGUITY_NUMBER=2345678910 CONTIGUITY_TEXT=1 contiguity "Hi"',
+    'CONTIGUITY_NUMBER=5555555555 CONTIGUITY_TEXT=1 contiguity "Hi"',
     'Set any option with env vars',
   ],
 ]
