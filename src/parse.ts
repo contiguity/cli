@@ -80,6 +80,7 @@ export async function cli(args: string[] = Deno.args) {
     .recommendCommands() // reccomend command when an invalid one is given
     .exitProcess(false) // don't exit proccess after -h or -v
     .strict() // throw errors on unrecongized options
+    .fail(false) // disable yargs' error handling
     .parserConfiguration({ // don't parse numbers (loss in accuracy)
       'parse-numbers': false,
       'parse-positional-numbers': false,

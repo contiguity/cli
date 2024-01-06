@@ -58,6 +58,55 @@ contiguity otp -n "MyTool" "(555) 555-5555"
 You can also use the **`contiguity otp send`** and **`contiguity otp verify`**
 subcommands to programmatically send and verify OTPs.
 
+# COMMANDS
+
+**contiguity**
+
+: Send a text message and/or email. Use **--text** and **--number** to send a
+text message, and **--email** to send an email. See "Phone options" and "Email
+options" for more details. Running this command without any options will print
+an ASCII art logo and the help message.
+
+**contiguity** **otp** _number_
+
+: Send an OTP to a phone number and interactively verify it. See "OTP options"
+for more details on the arguments to this command. The CLI will send the OTP,
+prompt for it on the command line, and verify it. You can also use the
+**`contiguity otp send`** and **`contiguity otp verify`** subcommands to
+programmatically send and verify OTPs.
+
+**contiguity** **otp** **send** _number_
+
+: Send an OTP to a phone number. See "OTP options" for more details on the
+arguments to this command. This command will send the OTP and print the OTP ID
+that can be used to verify it with **`contiguity otp verify`**.
+
+**contiguity** **otp** **verify** _otp-id_ _otp_
+
+: Verify an OTP with an OTP ID. This command will verify that the OTP provided
+matches the OTP that was sent when you ran **`contiguity otp send`** and got the
+OTP ID.
+
+**contiguity** **set-token** \[_token_]
+
+: Store your Contiguity token so that you don’t have to specify it with every
+command. If you don’t specify a token, you will be interactively prompted for
+one.
+
+**contiguity** **clear-token**
+
+: Clear the stored token that was stored with **`contiguity set-token`**.
+
+**contiguity** **check-token**
+
+: Ensure there is a token stored for future commands. If there is no token
+stored, you will be interactively prompted for one. This command is useful for
+running at the beginning of a script to ensure that the token is set.
+
+**contiguity** **quota**
+
+: Get your total and remaining quotas as well as other account information.
+
 # OPTIONS
 
 Options can be specified in any order, and can be specified at any point in the
