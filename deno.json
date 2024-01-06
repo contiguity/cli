@@ -1,4 +1,11 @@
 {
+  "name": "@contiguity/cli",
+  "description": "Command-line interface to interact with Contiguity's API",
+  "version": "2.0.0",
+  "repository": "https://github.com/use-contiguity/cli",
+  "documentation": "https://docs.contiguity.co/#/cli/",
+  "license": "MIT",
+
   "tasks": {
     "build": "deno task build-man && deno task build-npm",
 
@@ -14,7 +21,7 @@
   "imports": {
     "@contiguity/javascript": "npm:@contiguity/javascript@2.0.2",
     "dnt": "https://deno.land/x/dnt@0.37.0/mod.ts",
-    "libphonenumber-js": "npm:libphonenumber-js@1.10.36",
+    "libphonenumber-js": "npm:libphonenumber-js@1.10",
     "yargs": "https://deno.land/x/yargs@v17.7.2-deno/deno.ts",
     "yargsTypes": "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts",
     "cliffyPrompts": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts",
@@ -30,5 +37,40 @@
   },
   "test": {
     "exclude": ["npm/**/*"]
+  },
+  "build": {
+    "outDir": "./npm",
+    "entryPoints": [
+      "./src/mod.ts",
+      {
+        "kind": "bin",
+        "name": "contiguity",
+        "path": "./src/cli.ts"
+      },
+      {
+        "kind": "bin",
+        "name": "@contiguity/cli",
+        "path": "./src/cli.ts"
+      }
+    ],
+    "man": ["contiguity.1"],
+    "copiedFiles": {
+      "README.md": "README.md",
+      "LICENSE": "LICENSE",
+      "man/contiguity.1": "contiguity.1"
+    },
+    "moduleMappings": {
+      "https://deno.land/x/yargs@v17.7.2-deno/deno.ts": {
+        "name": "yargs",
+        "version": "^17.7.2"
+      },
+      "https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts": {
+        "name": "yargs",
+        "version": "^17.7.2"
+      }
+    },
+    "devDependencies": {
+      "@types/yargs": "^17.0.24"
+    }
   }
 }

@@ -4,7 +4,7 @@
 
 # NAME
 
-**contiguity** - command-line interface to interact with Contiguity’s API
+**contiguity** - command-line interface to interact with Contiguity's API
 
 # SYNOPSIS
 
@@ -23,7 +23,7 @@
 # DESCRIPTION
 
 **contiguity** is a command-line interface to interact with
-[Contiguity’s API](https://contiguity.co/). It can be used to send text messages
+[Contiguity's API](https://contiguity.co/). It can be used to send text messages
 and emails, verify phone numbers by sending them an OTP, with more features
 coming soon. It is written in TypeScript and is published to NPM as
 **`@use-contiguity/cli`**. You can install or uninstall it with NPM:
@@ -89,8 +89,8 @@ OTP ID.
 
 **contiguity** **set-token** \[_token_]
 
-: Store your Contiguity token so that you don’t have to specify it with every
-command. If you don’t specify a token, you will be interactively prompted for
+: Store your Contiguity token so that you don't have to specify it with every
+command. If you don't specify a token, you will be interactively prompted for
 one.
 
 **contiguity** **clear-token**

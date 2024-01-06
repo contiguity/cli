@@ -1,22 +1,13 @@
-import { build, emptyDir } from 'dnt'
+import { build, emptyDir, type EntryPoint } from 'dnt'
+import { join } from 'std/path/mod.ts'
+import denoJson from '../deno.json' with { type: 'json' }
+const outDir = denoJson.build.outDir
 
-await emptyDir('./npm')
+await emptyDir(outDir)
 
 await build({
-  entryPoints: [
-    './src/mod.ts',
-    {
-      kind: 'bin',
-      name: 'contiguity',
-      path: './src/cli.ts',
-    },
-    {
-      kind: 'bin',
-      name: '@contiguity/cli',
-      path: './src/cli.ts',
-    },
-  ],
-  outDir: './npm',
+  entryPoints: denoJson.build.entryPoints as (string | EntryPoint)[],
+  outDir: outDir,
   shims: {
     deno: true,
     undici: true,
@@ -25,38 +16,27 @@ await build({
   scriptModule: false,
   importMap: 'deno.json',
   package: {
-    name: '@contiguity/cli',
-    description: '',
-    version: '1.0.2',
+    name: denoJson.name,
+    description: denoJson.description,
+    version: denoJson.version,
     repository: {
       'type': 'git',
-      'url': 'git+https://github.com/use-contiguity/cli.git',
+      'url': `git+${denoJson.repository}.git`,
     },
-    author: 'Contiguity',
-    license: 'MIT',
+    license: denoJson.license,
     bugs: {
-      url: 'https://github.com/use-contiguity/cli/issues',
+      url: `${denoJson.repository}/issues`,
     },
-    homepage: 'https://github.com/use-contiguity/cli#readme',
-    devDependencies: {
-      '@types/yargs': '^17.0.24',
-    },
-    man: ['contiguity.1'],
+    homepage: denoJson.documentation,
+    devDependencies: denoJson.build.devDependencies,
+    man: denoJson.build.man,
   },
-  mappings: {
-    'https://deno.land/x/yargs@v17.7.2-deno/deno.ts': {
-      name: 'yargs',
-      version: '^17.7.2',
-    },
-    'https://esm.sh/v125/@types/yargs@17.0.24/index.d.ts': {
-      name: 'yargs',
-      version: '^17.7.2',
-    },
-  },
-  async postBuild() {
+  mappings: denoJson.build.moduleMappings,
+  postBuild() {
     // steps to run after building and before running the tests
-    await Deno.copyFile('LICENSE', 'npm/LICENSE')
-    await Deno.copyFile('README.md', 'npm/README.md')
-    await Deno.copyFile('man/contiguity.1', 'npm/contiguity.1')
+
+    for (const [source, target] of Object.entries(denoJson.build.copiedFiles)) {
+      Deno.copyFileSync(source, join(outDir, target))
+    }
   },
 })
