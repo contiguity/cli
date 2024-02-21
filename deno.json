@@ -27,6 +27,9 @@
     "cliffyPrompts": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts",
     "std/": "https://deno.land/std@0.211.0/"
   },
+  "exports": {
+    ".": "./src/cli.ts"
+  },
   "fmt": {
     "semiColons": false,
     "singleQuote": true,

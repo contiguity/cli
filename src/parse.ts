@@ -75,6 +75,7 @@ export async function cli(args: string[] = Deno.args) {
     .command(quotaCommand)
     .alias('h', 'help') // -h and -v
     .alias('v', 'version')
+    .version('2.0.0')
     .example(examples) // examples
     .completion('completion', false) // hidden completion command
     .recommendCommands() // reccomend command when an invalid one is given

@@ -13,6 +13,7 @@ jobs:
 
     permissions:
       contents: write
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -57,9 +58,15 @@ jobs:
           cd npm
           npm publish --access public
           cd ..
-        if: contains(github.event.head_commit.message, '[publish]')
+        if: contains(github.event.head_commit.message, '[publish npm]') || contains(github.event.head_commit.message, '[publish]')
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Publish to JSR
+        run: deno publish
+        if: contains(github.event.head_commit.message, '[publish jsr]') || contains(github.event.head_commit.message, '[publish]')
+        # no secrets required!
+        # https://jsr.io/docs/publishing-packages#publishing-from-github-actions
 
       - name: Commit any changes
         uses: stefanzweifel/git-auto-commit-action@v4.16.0

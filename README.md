@@ -11,12 +11,25 @@ Read more about using the CLI in the docs, at
 
 ## Installation
 
-Using Contiguity CLI requires Node.js to be installed.
+Contiguity CLI can be used with [Node.js](https://nodejs.org) or [Deno](https://deno.com/).
 
-You can install the Contiguity CLI globally using the following command:
+Install the Contiguity CLI with Node:
 
 ```bash
-$ npm install -g contiguity-cli
+$ npm install -g @contiguity/cli
+```
+
+Alternatively, install the Contiguity CLI with Deno:
+
+```bash
+$ deno install -An contiguity jsr:@contiguity/cli
+```
+
+You can also run the CLI without installing it with either Node or Deno:
+
+```bash
+$ npx @contiguity/cli --help
+$ deno run -A jsr:@contiguity/cli --help
 ```
 
 ## Setup
